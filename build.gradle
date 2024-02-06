@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.micartey.mysql'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+
+    maven { url 'https://libraries.minecraft.net/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'commons-io:commons-io:2.11.0'
+    compileOnly 'com.mojang:authlib:1.5.25'
+    compileOnly 'io.netty:netty-all:4.1.88.Final'
+
+    compileOnly 'com.github.cardinalanticheat:addon-api:master-SNAPSHOT'
+
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'io.vavr:vavr:0.10.2'
+}
+
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_1_8
