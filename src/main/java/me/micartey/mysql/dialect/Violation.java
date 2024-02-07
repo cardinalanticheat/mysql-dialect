@@ -44,7 +44,7 @@ public class Violation implements ViolationDialect {
                 String.format("SELECT * FROM violations WHERE uniqueId='%s'", uniqueId)
         ).executeQuery();
 
-        return result.next() ? Arrays.asList(result.getString("violations").split(", ")) : Collections.emptyList();
+        return result.next() ? Arrays.asList(result.getString("violations").split(", ")) : new ArrayList<>();
     }
 
     @Override
