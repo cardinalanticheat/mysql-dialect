@@ -5,12 +5,13 @@ import lombok.SneakyThrows;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.Arrays;
 
 public enum Config {
 
     MARIA_HOST("host", "localhost"),
     MARIA_PORT("port", 3306),
-    MARIA_USERNAME("username", "root"),
+    MARIA_USERNAME("username", "username"),
     MARIA_PASSWORD("password", "password"),
     MARIA_DATABASE("database", "database")
 
@@ -28,8 +29,6 @@ public enum Config {
     Config(String data, Object object) {
         this.defaultObject = object;
         this.data = data;
-        createFile();
-        load();
     }
 
     @SneakyThrows
@@ -55,5 +54,16 @@ public enum Config {
 
     public <T> T get() {
         return (T) (object == null ? defaultObject : object);
+    }
+
+    public int getInt() {
+        return Integer.parseInt(String.valueOf((int) get()));
+    }
+
+    static {
+        Arrays.stream(Config.values()).forEach(config -> {
+            config.createFile();
+            config.load();
+        });
     }
 }

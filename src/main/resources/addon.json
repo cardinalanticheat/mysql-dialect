@@ -1,6 +1,6 @@
 {
   "name": "MySQL-Dialect",
   "author": "micartey",
-  "main": "me.micartey.mariadb.Core",
+  "main": "me.micartey.mysql.Core",
   "version": "v1.0"
 }

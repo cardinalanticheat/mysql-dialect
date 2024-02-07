@@ -1,6 +1,10 @@
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'me.micartey.mysql'
 version = '1.0-SNAPSHOT'
@@ -40,3 +44,9 @@ dependencies {
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 java.targetCompatibility = JavaVersion.VERSION_1_8
+
+shadowJar {
+    archiveFileName = "${project.name}-all.jar"
+
+    relocate 'com.mysql', 'me.micartey.mysql'
+}
