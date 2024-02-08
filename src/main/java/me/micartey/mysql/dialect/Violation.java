@@ -7,8 +7,8 @@ import me.micartey.mysql.Core;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Violation implements ViolationDialect {
 
@@ -44,7 +44,12 @@ public class Violation implements ViolationDialect {
                 String.format("SELECT * FROM violations WHERE uniqueId='%s'", uniqueId)
         ).executeQuery();
 
-        return result.next() ? Arrays.asList(result.getString("violations").split(", ")) : new ArrayList<>();
+        List<String> violations = new ArrayList<>();
+
+        while (result.next())
+            violations.addAll(Arrays.stream(result.getString("violations").split(", ")).collect(Collectors.toList()));
+
+        return violations;
     }
 
     @Override
